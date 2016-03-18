@@ -6,7 +6,11 @@
   "scripts": {
     "test": "./node_modules/.bin/tape *Test.js | ./node_modules/.bin/faucet"
   },
-  "author": "",
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/AOEpeople/sane-url-builder.git"
+  },
+  "author": "Marc Dix",
   "license": "ISC",
   "devDependencies": {
     "faucet": "0.0.1",
