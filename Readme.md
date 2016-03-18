@@ -1,6 +1,6 @@
 # sane-url-builder
 ## why
-When concatenating urls in javascript it starts easy but ends up looking similar to this
+When concatenating urls in javascript always starts pretty easy but ends up looking similar to this
 
 ```javascript
 let config = {
