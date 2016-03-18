@@ -2,10 +2,14 @@
   "name": "sane-url-builder",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "saneUrlBuilder.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/tape *Test.js | ./node_modules/.bin/faucet"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "faucet": "0.0.1",
+    "tape": "4.5.1"
+  }
 }
