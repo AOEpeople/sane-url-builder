@@ -44,7 +44,6 @@ module.exports = function(url) {
         return port;
     }
 
-    // array
     function path(paths) {
         if (paths.length < 1) return '';
         return paths.map(function(path) {
@@ -54,7 +53,6 @@ module.exports = function(url) {
         }).join('');
     }
 
-    // tbd: array
     function query(queries) {
         if (queries.length < 1) return '';
 
@@ -70,7 +68,6 @@ module.exports = function(url) {
         }).join('');
     }
 
-    // array
     function fragment(fragments) {
         if (fragments.length < 1) return '';
         return fragments.map(function(fragment, index) {
