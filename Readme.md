@@ -47,4 +47,5 @@ sub.value();
 // yields: ftp://different.host/endpoint?param=value
 ```
 
+documentation todos: deleting a part (passing false), adding multiple paths, fragments, queries
 url: scheme://user:pass@host:port/path?query#fragment
