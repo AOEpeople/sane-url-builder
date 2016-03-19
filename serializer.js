@@ -5,7 +5,7 @@ module.exports = function(url) {
         var val = url[propertyName];
 
         switch(propertyName) {
-            case 'scheme'   : return schema(val);
+            case 'scheme'   : return scheme(val);
             case 'user'     : return user(val);
             case 'pass'     : return pass(val);
             case 'host'     : return host(val);
@@ -17,7 +17,7 @@ module.exports = function(url) {
         }
     }).join('');
 
-    function schema(scheme) {
+    function scheme(scheme) {
         if (scheme.indexOf('://') === -1) scheme += '://';
         return scheme;
     }
