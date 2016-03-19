@@ -1,5 +1,5 @@
 var test = require('tape');
-var serializer = require('./serializer');
+var serializer = require('./urlSerializer');
 
 test('returns empty string for missing param', function(t) {
     t.plan(1);

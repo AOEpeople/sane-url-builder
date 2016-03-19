@@ -1,4 +1,4 @@
-var serializer = require('./serializer');
+var serializer = require('./urlSerializer');
 
 var Sub = function() {
     this.url = {};
