@@ -55,4 +55,4 @@ sub.path('something').path('and/even/more').value();
 A url is made of the following parts:
 scheme://user:pass@host:port/path?query#fragment
 
-sane-url-builder provides all of those as methods PLUS two aliases, which are 'protocol' (alias for 'scheme') and 'hash' (alias for 'fragment'). All methods can be chained and called with Boolean 'false' to clear the current value. If calling 'path', 'query', 'fragment' / 'hash' multiple times they will append the passed value to the current value. The only method that can't be chained is 'value' as it returns the built url.
+sane-url-builder provides all of those as methods PLUS two aliases, which are `protocol` (alias for 'scheme') and 'hash' (alias for 'fragment'). All methods can be chained and called with Boolean 'false' to clear the current value. If calling 'path', 'query', 'fragment' / 'hash' multiple times they will append the passed value to the current value. The only method that can't be chained is 'value' as it returns the built url.
