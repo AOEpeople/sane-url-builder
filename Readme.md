@@ -30,22 +30,25 @@ Just build your url using sane-url-builder which provides a clean interface for 
 var sub = new SaneUrlBuilder;
 var url = sub.protocol(window.location.protocol)
              .host(config.host).path(config.endpoint).query('param=value').value();
-
 // yields: http://some.host/endpoint?param=value
 ```
 
-If you have to change a value, just set it again
+If you have to change a value, just set it again (doesn't work for path, query, fragment/hash - read on)
 ```javascript
-var sub = new SaneUrlBuilder;
-
-sub.protocol(window.location.protocol).host(config.host).path(config.endpoint).query('param=value');
-sub.value();
-// yields: http://some.host/endpoint?param=value
-
-sub.protocol('ftp').host('different.host');
-sub.value();
+sub.protocol('ftp').host('different.host').value();
 // yields: ftp://different.host/endpoint?param=value
 ```
 
-documentation todos: deleting a part (passing false), adding multiple paths, fragments, queries
+If you have to change a path, query or fragment/hash first delete it, then set it again
+```javascript
+sub.path('some/path').path(false).path('the/new/path').value();
+// yields: ftp://different.host/the/new/path?param=value
+```
+
+If you want to append something to a path, query or fragment/hash, just call the method again
+```javascript
+sub.path('something').path('and/even/more').value();
+// yields: ftp://different.host/the/new/path/something/and/even/more?param=value
+```
+
 url: scheme://user:pass@host:port/path?query#fragment
