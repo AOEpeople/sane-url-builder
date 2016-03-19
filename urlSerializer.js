@@ -5,15 +5,15 @@ module.exports = function(url) {
         var val = url[propertyName];
 
         switch(propertyName) {
-            case 'scheme'   : return scheme(val);
-            case 'user'     : return user(val);
-            case 'pass'     : return pass(val);
-            case 'host'     : return host(val);
-            case 'port'     : return port(val);
-            case 'path'     : return path(val);
-            case 'query'    : return query(val);
-            case 'fragment' : return fragment(val);
-            default         : return '';
+            case 'scheme'    : return scheme(val);
+            case 'user'      : return user(val);
+            case 'pass'      : return pass(val);
+            case 'host'      : return host(val);
+            case 'port'      : return port(val);
+            case 'paths'     : return path(val);
+            case 'queries'   : return query(val);
+            case 'fragments' : return fragment(val);
+            default          : throw new Error('No handler for propertyName: ' + propertyName);
         }
     }).join('');
 
@@ -44,20 +44,38 @@ module.exports = function(url) {
         return port;
     }
 
-    function path(path) {
-        if (path.substr(0, 1) !== '/') path = '/' + path;
-        if (path.substr(-1, 1) === '/') path = path.substr(0, (path.length - 1));
-        return path;
+    // array
+    function path(paths) {
+        if (paths.length < 1) return '';
+        return paths.map(function(path) {
+            if (path.substr(0, 1) !== '/') path = '/' + path;
+            if (path.substr(-1, 1) === '/') path = path.substr(0, (path.length - 1));
+            return path;
+        }).join('');
     }
 
-    function query(query) {
-        if (query.substr(0, 1) === '&') query = '?' + query.substr(1);
-        if (query.substr(0, 1) !== '?') query = '?' + query;
-        return query;
+    // tbd: array
+    function query(queries) {
+        if (queries.length < 1) return '';
+
+        return queries.map(function(query, index) {
+            if (index === 0) {
+                if (query.substr(0, 1) === '&') query = '?' + query.substr(1);
+                if (query.substr(0, 1) !== '?') query = '?' + query;
+            } else {
+                if (query.substr(0, 1) === '?') query = '&' + query.substr(1);
+                if (query.substr(0, 1) !== '&') query = '&' + query;
+            }
+            return query;
+        }).join('');
     }
 
-    function fragment(fragment) {
-        if (fragment.substr(0, 1) !== '#') fragment = '#' + fragment;
-        return fragment;
+    // array
+    function fragment(fragments) {
+        if (fragments.length < 1) return '';
+        return fragments.map(function(fragment, index) {
+            if (index === 0 && fragment.substr(0, 1) !== '#') fragment = '#' + fragment
+            return fragment;
+        }).join('');
     }
 };

@@ -16,7 +16,7 @@ test('provides chainable methods', function(t) {
 
     t.doesNotThrow(function() {
         sub.protocol().scheme().user().pass().host().port()
-           .path().query().hash().fragment().addPath().addQuery().addFragment().value()
+           .path().query().hash().fragment().value()
     });
 });
 
@@ -51,4 +51,51 @@ test('provides useful url', function(t) {
     t.equal(sub.scheme('http').host('my-host.host').path('this/is/some/path').fragment('#somehash').value(),
         'http://my-host.host/this/is/some/path#somehash'
     );
+});
+
+test('path clearing and adding works', function(t) {
+    t.plan(1);
+
+    var sub = new SaneUrlBuilder();
+
+    t.equal(sub.path('this/is/some/path').path(false).path('/another/path').path('and/something/more').value(),
+        '/another/path/and/something/more'
+    );
+});
+
+test('fragment clearing and adding works', function(t) {
+    t.plan(1);
+
+    var sub = new SaneUrlBuilder();
+
+    t.equal(sub.fragment('#somehash').fragment(false).fragment('#anotherhash').fragment('-more-stuff').value(),
+        '#anotherhash-more-stuff'
+    );
+});
+
+test('query clearing and adding works', function(t) {
+    t.plan(1);
+
+    var sub = new SaneUrlBuilder();
+
+    t.equal(sub.query('?some-query').query(false).query('&some=other&query=yes').query('?more=true').value(),
+        '?some=other&query=yes&more=true'
+    );
+});
+
+test('clears values', function(t) {
+    t.plan(8);
+
+    var sub;
+
+    sub = new SaneUrlBuilder();
+
+    t.equal(sub.scheme('http').scheme(false).value(), '');
+    t.equal(sub.user('someuser').user(false).value(), '');
+    t.equal(sub.pass('somepath').pass(false).value(), '');
+    t.equal(sub.host('some-host.host').host(false).value(), '');
+    t.equal(sub.port('123').port(false).value(), '');
+    t.equal(sub.path('/some/path').path(false).value(), '');
+    t.equal(sub.fragment('#someFragment').fragment(false).value(), '');
+    t.equal(sub.query('?someQuery').query(false).value(), '');
 });

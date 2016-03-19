@@ -13,6 +13,12 @@ test('returns empty string for empty object', function(t) {
     t.equal(serializer({}), '');
 });
 
+test('throws if unknown property is used', function(t) {
+    t.plan(1);
+
+    t.throws(function() {serializer({unknown: '', properties: ''})});
+});
+
 test('returns a proper scheme (protocol)', function(t) {
     t.plan(3);
 
@@ -46,26 +52,49 @@ test('returns a proper port', function(t) {
     t.equal(serializer({port: ':6000'}), ':6000');
 });
 
-test('returns a proper path', function(t) {
+test('returns a proper path (single)', function(t) {
     t.plan(4);
 
-    t.equal(serializer({path: '/some/fancy/path'}), '/some/fancy/path');
-    t.equal(serializer({path: '/some/fancy/path/'}), '/some/fancy/path');
-    t.equal(serializer({path: 'some/fancy/path/'}), '/some/fancy/path');
-    t.equal(serializer({path: 'some/fancy/path'}), '/some/fancy/path');
+    t.equal(serializer({paths: ['/some/fancy/path']}), '/some/fancy/path');
+    t.equal(serializer({paths: ['/some/fancy/path/']}), '/some/fancy/path');
+    t.equal(serializer({paths: ['some/fancy/path/']}), '/some/fancy/path');
+    t.equal(serializer({paths: ['some/fancy/path']}), '/some/fancy/path');
 });
 
-test('returns a proper query', function(t) {
+test('returns a proper path (multiple)', function(t) {
+    t.plan(4);
+
+    t.equal(serializer({paths: ['/some/fancy/path', 'other/stuff']}), '/some/fancy/path/other/stuff');
+    t.equal(serializer({paths: ['/some/fancy/path/', 'other/stuff', '/and/more']}), '/some/fancy/path/other/stuff/and/more');
+    t.equal(serializer({paths: ['some/fancy/path/', '/other/stuff/', '/and/more/']}), '/some/fancy/path/other/stuff/and/more');
+    t.equal(serializer({paths: ['some/fancy/path', 'other/stuff', 'and/more']}), '/some/fancy/path/other/stuff/and/more');
+});
+
+test('returns a proper query (single)', function(t) {
     t.plan(3);
 
-    t.equal(serializer({query: '?this=blah&that=blubb'}), '?this=blah&that=blubb');
-    t.equal(serializer({query: 'this=blah&that=blubb'}), '?this=blah&that=blubb');
-    t.equal(serializer({query: '&this=blah'}), '?this=blah');
+    t.equal(serializer({queries: ['?this=blah&that=blubb']}), '?this=blah&that=blubb');
+    t.equal(serializer({queries: ['this=blah&that=blubb']}), '?this=blah&that=blubb');
+    t.equal(serializer({queries: ['&this=blah']}), '?this=blah');
 });
 
-test('returns a proper fragment (hash)', function(t) {
+test('returns a proper query (multiple)', function(t) {
     t.plan(2);
 
-    t.equal(serializer({fragment: '#hacketyHash'}), '#hacketyHash');
-    t.equal(serializer({fragment: 'hacketyHash'}), '#hacketyHash');
+    t.equal(serializer({queries: ['?this=blah&that=blubb', '?and=test&more=blubb']}), '?this=blah&that=blubb&and=test&more=blubb');
+    t.equal(serializer({queries: ['this=blah&that=blubb', '?and=test&more=blubb', '&even=more']}), '?this=blah&that=blubb&and=test&more=blubb&even=more');
+});
+
+test('returns a proper fragment (hash) (single)', function(t) {
+    t.plan(2);
+
+    t.equal(serializer({fragments: ['#hacketyHash']}), '#hacketyHash');
+    t.equal(serializer({fragments: ['hacketyHash']}), '#hacketyHash');
+});
+
+test('returns a proper fragment (hash) (multiple)', function(t) {
+    t.plan(2);
+
+    t.equal(serializer({fragments: ['#hacketyHash', '-more|', '+andEvenMore']}), '#hacketyHash-more|+andEvenMore');
+    t.equal(serializer({fragments: ['hacketyHash', '-more|', '+andEvenMore']}), '#hacketyHash-more|+andEvenMore');
 });
