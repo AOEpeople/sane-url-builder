@@ -57,7 +57,7 @@ A url is made of the following parts:
 
 sane-url-builder provides all of those `[parts]` as methods PLUS two aliases, which are `protocol()` (alias for `scheme()`) and `hash()` (alias for `fragment()`). All methods can be chained (except for `value()` as it returns the built url) and called with Boolean `false` to clear the current value. If calling `path()`, `query()`, `fragment()` / `hash()` multiple times they will append the passed value to the current value. If calling the other methods multiple times they will simply override the current value. All methods take a simple `string` as parameter.
 
-## support
+## environmental support
 Currently supports commonjs (e. g. using it in node or via browserify in the browser). The compiled version (build/saneUrlBuilder.js) can be used in the browser (f. e. just loaded via script-tag).
 
 ### node / browserify
@@ -68,7 +68,7 @@ var sub = new SaneUrlBuilder();
     sub.host('my-host')........value();
 ```
 
-### environmental browser
+### browser
 ```
 <script src="saneUrlBuilder.js"></script>
 <script>
