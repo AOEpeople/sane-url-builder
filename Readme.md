@@ -53,7 +53,7 @@ sub.path('something').path('and/even/more').value();
 
 If you want to start over again without creating a new object, just use `clear()`
 ```javascript
-sub.clear();
+sub.clear().value();
 // yields: (empty string)
 ```
 
