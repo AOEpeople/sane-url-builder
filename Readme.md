@@ -51,6 +51,12 @@ sub.path('something').path('and/even/more').value();
 // yields: ftp://different.host/the/new/path/something/and/even/more?param=value
 ```
 
+If you want to start over again without creating a new object, just use `clear()`
+```javascript
+sub.path('something').path('and/even/more').clear();
+// yields: (empty string)
+```
+
 ## methods
 A url is made of the following parts:
 `[scheme]`://`[user]`:`[pass]`@`[host]`:`[port]`/`[path]`?`[query]`#`[fragment]`
