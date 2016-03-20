@@ -68,7 +68,7 @@ var sub = new SaneUrlBuilder();
     sub.host('my-host')........value();
 ```
 
-### browser
+### environmental browser
 ```
 <script src="saneUrlBuilder.js"></script>
 <script>
