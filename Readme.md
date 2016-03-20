@@ -1,4 +1,13 @@
 # sane-url-builder
+## Tl;dr
+* clean interface to concatenate url parts (with error correction)
+* set parts of url with `scheme()`, `user()`, `pass()`, `host()`(), `port()`, `path()`, `query()`, `fragment()` methods (url consists of [scheme]`://`[user]`:`[pass]`@`[host]`:`[port]`/`[path]`?`[query]`#`[fragment])
+* calling the methods mentioned above more than once will override their values, except for `path`, `query` and `fragment` (they append)
+* all methods mentioned above are chainable
+* all methods mentioned above can take Boolean `false` to clear the corresponding value
+* clear everything with `clear()` (also chainable)
+* get the current url with `value()`
+
 ## why
 When concatenating urls in javascript always starts pretty easy but ends up looking similar to this
 
