@@ -73,12 +73,17 @@ Sub.prototype.value = function() {
     return serializer(this.url);
 };
 
+Sub.prototype.clear = function() {
+    this.url = {};
+    return this;
+};
+
 // aliases
 Sub.prototype.protocol = Sub.prototype.scheme;
 Sub.prototype.hash     = Sub.prototype.fragment;
 
 module.exports = Sub;
 
-if (window) {
+if (typeof window === 'object') {
     window.SaneUrlBuilder = Sub;
 }

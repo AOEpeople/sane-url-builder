@@ -1,5 +1,6 @@
 var test = require('tape');
 var SaneUrlBuilder = require('./saneUrlBuilder');
+var EMPTY_STRING = '';
 
 test('returns an empty string per default', function(t) {
     t.plan(1);
@@ -90,12 +91,22 @@ test('clears values', function(t) {
 
     sub = new SaneUrlBuilder();
 
-    t.equal(sub.scheme('http').scheme(false).value(), '');
-    t.equal(sub.user('someuser').user(false).value(), '');
-    t.equal(sub.pass('somepath').pass(false).value(), '');
-    t.equal(sub.host('some-host.host').host(false).value(), '');
-    t.equal(sub.port('123').port(false).value(), '');
-    t.equal(sub.path('/some/path').path(false).value(), '');
-    t.equal(sub.fragment('#someFragment').fragment(false).value(), '');
-    t.equal(sub.query('?someQuery').query(false).value(), '');
+    t.equal(sub.scheme('http').scheme(false).value(), EMPTY_STRING);
+    t.equal(sub.user('someuser').user(false).value(), EMPTY_STRING);
+    t.equal(sub.pass('somepath').pass(false).value(), EMPTY_STRING);
+    t.equal(sub.host('some-host.host').host(false).value(), EMPTY_STRING);
+    t.equal(sub.port('123').port(false).value(), EMPTY_STRING);
+    t.equal(sub.path('/some/path').path(false).value(), EMPTY_STRING);
+    t.equal(sub.fragment('#someFragment').fragment(false).value(), EMPTY_STRING);
+    t.equal(sub.query('?someQuery').query(false).value(), EMPTY_STRING);
+});
+
+test('clears everything', function(t) {
+    t.plan(1);
+
+    var sub = new SaneUrlBuilder();
+
+    t.equal(sub.scheme('http').user('john').pass('doe').host('my-host.host').port('2000')
+               .path('this/is/some/path').query('?somequery=value').fragment('#somehash').clear().value(), EMPTY_STRING
+    );
 });
