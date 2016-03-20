@@ -78,3 +78,7 @@ Sub.prototype.protocol = Sub.prototype.scheme;
 Sub.prototype.hash     = Sub.prototype.fragment;
 
 module.exports = Sub;
+
+if (window) {
+    window.SaneUrlBuilder = Sub;
+}

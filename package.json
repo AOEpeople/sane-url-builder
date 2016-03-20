@@ -4,15 +4,18 @@
   "description": "",
   "main": "saneUrlBuilder.js",
   "scripts": {
-    "test": "./node_modules/.bin/tape *Test.js | ./node_modules/.bin/faucet"
+    "clean": "rm -rf build",
+    "test": "./node_modules/.bin/tape *Test.js | ./node_modules/.bin/faucet",
+    "build": "npm run clean && mkdir build && ./node_modules/.bin/browserify saneUrlBuilder.js --o build/saneUrlBuilder.js"
   },
-  "repository" : {
-    "type" : "git",
-    "url" : "https://github.com/AOEpeople/sane-url-builder.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AOEpeople/sane-url-builder.git"
   },
   "author": "Marc Dix",
   "license": "ISC",
   "devDependencies": {
+    "browserify": "13.0.0",
     "faucet": "0.0.1",
     "tape": "4.5.1"
   }
