@@ -6,7 +6,8 @@
   "scripts": {
     "clean": "rm -rf build",
     "test": "./node_modules/.bin/tape *Test.js | ./node_modules/.bin/faucet",
-    "build": "npm run clean && mkdir build && ./node_modules/.bin/browserify saneUrlBuilder.js --o build/saneUrlBuilder.js"
+    "build": "npm run clean && mkdir build && ./node_modules/.bin/browserify saneUrlBuilder.js --o build/saneUrlBuilder.js",
+    "publish": "git push && git push --tags && npm publish"
   },
   "repository": {
     "type": "git",
