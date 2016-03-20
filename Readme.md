@@ -61,6 +61,7 @@ sane-url-builder provides all of those `[parts]` as methods PLUS two aliases, wh
 Currently supports commonjs (e. g. using it in node or via browserify in the browser). The compiled version (build/saneUrlBuilder.js) can be used in the browser (f. e. just loaded via script-tag).
 
 ### node / browserify
+Just do a `npm install sane-url-browser` first, then in your code:
 ```
 var SaneUrlBuilder = require('sane-url-builder');
 
@@ -69,6 +70,7 @@ var sub = new SaneUrlBuilder();
 ```
 
 ### browser
+Just download the compiled javascript (https://github.com/AOEpeople/sane-url-builder/blob/master/build/saneUrlBuilder.js), then do:
 ```
 <script src="saneUrlBuilder.js"></script>
 <script>
