@@ -24,7 +24,7 @@ baseUrl += 'param=value';
 ```
 
 ## solution
-Just build your url using sane-url-builder which provides a clean interface for creating urls. For the above example it would look like:
+Just build your url using sane-url-builder which provides a clean interface for creating urls. For the above example it would look like (all of the following examples are based on their predecessors):
 
 ```javascript
 var sub = new SaneUrlBuilder;
@@ -53,7 +53,7 @@ sub.path('something').path('and/even/more').value();
 
 If you want to start over again without creating a new object, just use `clear()`
 ```javascript
-sub.path('something').path('and/even/more').clear();
+sub.clear();
 // yields: (empty string)
 ```
 
