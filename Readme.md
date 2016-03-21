@@ -21,6 +21,8 @@ baseUrl += 'param=value';
 
 // yields: http://some.host/endpoint?param=value
 ```
+## Before & after
+![before & after](http://i.imgur.com/gnCygiK.png)
 
 ## Tl;dr
 * clean interface to concatenate url parts (with error correction)
