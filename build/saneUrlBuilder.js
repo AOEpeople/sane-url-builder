@@ -109,7 +109,7 @@ module.exports = function(url) {
     }).join('');
 
     function scheme(scheme) {
-        if (scheme.indexOf('://') === -1) scheme += '://';
+        scheme = (scheme.indexOf(':') === -1) ? scheme + '://' : scheme.substr(0, scheme.indexOf(':')) + '://';
         return scheme;
     }
 
