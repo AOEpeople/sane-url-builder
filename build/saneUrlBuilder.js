@@ -1,5 +1,36 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+(function(factory) {
+    'use strict';
+
+    if (typeof define === 'function' && define.amd && define.amd.dust === true) {
+        define(factory);
+    } else if (typeof exports === 'object') {
+        module.exports = factory();
+    } else {
+        factory();
+    }
+}(function () {
+    'use strict';
+
+    var copyObject = function (sourceObject, destObject, keyList) {
+        destObject = destObject || {};
+        keyList = (Array.isArray(keyList)) ? keyList : Object.keys(sourceObject);
+
+        keyList.forEach(function (key) {
+            if (undefined !== sourceObject[key]) {
+                destObject[key] = sourceObject[key];
+            }
+        });
+
+        return destObject;
+    };
+
+    return copyObject;
+}));
+
+},{}],2:[function(require,module,exports){
 var serializer = require('./urlSerializer');
+var copy = require('copy-object');
 
 var Sub = function() {
     this.url = {};
@@ -79,6 +110,12 @@ Sub.prototype.clear = function() {
     return this;
 };
 
+Sub.prototype.clone = function() {
+    var cloned = Object.create(this);
+    cloned.url = copy(this.url);
+    return cloned;
+};
+
 // aliases
 Sub.prototype.protocol = Sub.prototype.scheme;
 Sub.prototype.hash     = Sub.prototype.fragment;
@@ -88,7 +125,7 @@ module.exports = Sub;
 if (typeof window === 'object') {
     window.SaneUrlBuilder = Sub;
 }
-},{"./urlSerializer":2}],2:[function(require,module,exports){
+},{"./urlSerializer":3,"copy-object":1}],3:[function(require,module,exports){
 module.exports = function(url) {
     if (typeof url !== 'object') url = {};
 
@@ -167,4 +204,4 @@ module.exports = function(url) {
         }).join('');
     }
 };
-},{}]},{},[1]);
+},{}]},{},[2]);
