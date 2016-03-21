@@ -32,7 +32,7 @@ baseUrl += 'param=value';
 * all methods mentioned above can take Boolean `false` to clear the corresponding value
 * clear everything with `clear()` (also chainable)
 * get the current url with `value()`
-* clone the current object with `clone
+* clone the current object with `clone`
 
 ## solution
 Just build your url using sane-url-builder which provides a clean interface for creating urls. For the above example it would look like (all of the following examples are based on their predecessors):
