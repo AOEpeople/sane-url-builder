@@ -20,10 +20,12 @@ test('throws if unknown property is used', function(t) {
 });
 
 test('returns a proper scheme (protocol)', function(t) {
-    t.plan(3);
+    t.plan(5);
 
     t.equal(serializer({scheme: 'http'}), 'http://');
     t.equal(serializer({scheme: 'ftp'}), 'ftp://');
+    t.equal(serializer({scheme: 'http:'}), 'http://');
+    t.equal(serializer({scheme: 'http:/'}), 'http://');
     t.equal(serializer({scheme: 'http://'}), 'http://');
 });
 
