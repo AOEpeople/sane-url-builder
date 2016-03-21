@@ -32,7 +32,7 @@ baseUrl += 'param=value';
 * all methods mentioned above can take Boolean `false` to clear the corresponding value
 * clear everything with `clear()` (also chainable)
 * get the current url with `value()`
-* clone the current object with `clone`
+* clone the current object with `clone()`
 
 ## solution
 Just build your url using sane-url-builder which provides a clean interface for creating urls. For the above example it would look like (all of the following examples are based on their predecessors):
@@ -63,11 +63,12 @@ sub.path('something').path('and/even/more').value();
 ```
 If you want to clone the current url, just use `clone()`
 ```javascript
-sub.protocol('http').host('my-host').port(3000).value();
-// yields: http://my-host:3000
+var sub2 = sub.clone();
+sub2.protocol('http').host('another-host').value();
+// yields: http://another-host/the/new/path/something/and/even/more?param=value
 
-sub.clone().host('another-host').value();
-// yields: http://another-host:3000
+sub.value();
+// still yields: ftp://different.host/the/new/path/something/and/even/more?param=value
 ```
 
 If you want to start over again without creating a new object, just use `clear()`
