@@ -19,5 +19,8 @@
     "browserify": "13.0.0",
     "faucet": "0.0.1",
     "tape": "4.5.1"
+  },
+  "dependencies": {
+    "copy-object": "1.0.0"
   }
 }

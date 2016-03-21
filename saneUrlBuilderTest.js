@@ -110,3 +110,16 @@ test('clears everything', function(t) {
                .path('this/is/some/path').query('?somequery=value').fragment('#somehash').clear().value(), EMPTY_STRING
     );
 });
+
+test('clones url', function(t) {
+    t.plan(2);
+
+    var sub = new SaneUrlBuilder();
+    var sub2;
+
+    sub.scheme('http').host('host-one').port(5000).path('some-path');
+    sub2 = sub.clone().scheme('ftp').port(6000);
+
+    t.equal(sub.value(), 'http://host-one:5000/some-path', 'first should be unchanged');
+    t.equal(sub2.value(), 'ftp://host-one:6000/some-path', 'second should be changed');
+});

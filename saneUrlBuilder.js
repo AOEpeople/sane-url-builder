@@ -1,4 +1,5 @@
 var serializer = require('./urlSerializer');
+var copy = require('copy-object');
 
 var Sub = function() {
     this.url = {};
@@ -76,6 +77,12 @@ Sub.prototype.value = function() {
 Sub.prototype.clear = function() {
     this.url = {};
     return this;
+};
+
+Sub.prototype.clone = function() {
+    var cloned = Object.create(this);
+    cloned.url = copy(this.url);
+    return cloned;
 };
 
 // aliases

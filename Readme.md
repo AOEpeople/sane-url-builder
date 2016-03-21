@@ -32,6 +32,7 @@ baseUrl += 'param=value';
 * all methods mentioned above can take Boolean `false` to clear the corresponding value
 * clear everything with `clear()` (also chainable)
 * get the current url with `value()`
+* clone the current object with `clone
 
 ## solution
 Just build your url using sane-url-builder which provides a clean interface for creating urls. For the above example it would look like (all of the following examples are based on their predecessors):
@@ -60,6 +61,14 @@ If you want to append something to a path, query or fragment/hash, just call the
 sub.path('something').path('and/even/more').value();
 // yields: ftp://different.host/the/new/path/something/and/even/more?param=value
 ```
+If you want to clone the current url, just use `clone()`
+```javascript
+sub.protocol('http').host('my-host').port(3000).value();
+// yields: http://my-host:3000
+
+sub.clone().host('another-host').value();
+// yields: http://another-host:3000
+```
 
 If you want to start over again without creating a new object, just use `clear()`
 ```javascript
@@ -71,7 +80,7 @@ sub.clear().value();
 A url is made of the following parts:
 `[scheme]`://`[user]`:`[pass]`@`[host]`:`[port]`/`[path]`?`[query]`#`[fragment]`
 
-sane-url-builder provides all of those `[parts]` as methods PLUS two aliases, which are `protocol()` (alias for `scheme()`) and `hash()` (alias for `fragment()`). All methods can be chained (except for `value()` as it returns the built url) and called with Boolean `false` to clear the current value. If calling `path()`, `query()`, `fragment()` / `hash()` multiple times they will append the passed value to the current value. If calling the other methods multiple times they will simply override the current value. All methods take a simple `string` as parameter. To clear everything just use `clear()`.
+sane-url-builder provides all of those `[parts]` as methods PLUS two aliases, which are `protocol()` (alias for `scheme()`) and `hash()` (alias for `fragment()`). All methods can be chained (except for `value()` as it returns the built url) and called with Boolean `false` to clear the current value. If calling `path()`, `query()`, `fragment()` / `hash()` multiple times they will append the passed value to the current value. If calling the other methods multiple times they will simply override the current value. All methods take a simple `string` as parameter. To clear everything just use `clear()`. To clone the whole object (for changing stuff but keeping the original one) use `clone()`.
 
 ## environmental support
 Currently supports commonjs (e. g. using it in node or via browserify in the browser). The compiled version (build/saneUrlBuilder.js) can be used in the browser (f. e. just loaded via script-tag).
