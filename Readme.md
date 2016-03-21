@@ -56,17 +56,17 @@ sub.path('some/path').path(false).path('the/new/path').value();
 
 If you want to append something to a path, query or fragment/hash, just call the method again
 ```javascript
-sub.path('something').path('and/even/more').value();
-// yields: ftp://different.host/the/new/path/something/and/even/more?param=value
+sub.path('something').path('and/even/more').query('more=cool&stuff=here').value();
+// yields: ftp://different.host/the/new/path/something/and/even/more?param=value&more=cool&stuff=here
 ```
 If you want to clone the current url, just use `clone()`
 ```javascript
 var sub2 = sub.clone();
 sub2.protocol('http').host('another-host').value();
-// yields: http://another-host/the/new/path/something/and/even/more?param=value
+// yields: http://another-host/the/new/path/something/and/even/more?param=value&more=cool&stuff=here
 
 sub.value();
-// still yields: ftp://different.host/the/new/path/something/and/even/more?param=value
+// still yields: ftp://different.host/the/new/path/something/and/even/more?param=value&more=cool&stuff=here
 ```
 
 If you want to start over again without creating a new object, just use `clear()`
