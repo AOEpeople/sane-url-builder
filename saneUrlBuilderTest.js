@@ -79,7 +79,7 @@ test('query clearing and adding works', function(t) {
 
     var sub = new SaneUrlBuilder();
 
-    t.equal(sub.query('?some-query').query(false).query('&some=other&query=yes').query('?more=true').value(),
+    t.equal(sub.query({'some': 'query'}).query(false).query('&some=other&query=yes').query('?more=true').value(),
         '?some=other&query=yes&more=true'
     );
 });
@@ -122,4 +122,24 @@ test('clones url', function(t) {
 
     t.equal(sub.value(), 'http://host-one:5000/some-path', 'first should be unchanged');
     t.equal(sub2.value(), 'ftp://host-one:6000/some-path', 'second should be changed');
+});
+
+test('query can take an object', function(t) {
+    t.plan(1);
+
+    var sub = new SaneUrlBuilder();
+
+    t.equal(sub.query({'paramOne': 'value one', 'paramTwo': 'value two', 'paramThree': 'value three'}).value(),
+        '?paramOne=value one&paramTwo=value two&paramThree=value three'
+    )
+});
+
+test('mixed string and object query calls work', function(t) {
+    t.plan(1);
+
+    var sub = new SaneUrlBuilder();
+
+    t.equal(sub.query({'paramOne': 'value one', 'paramTwo': 'value two', 'paramThree': 'value three'}).query('paramFour=value four').value(),
+        '?paramOne=value one&paramTwo=value two&paramThree=value three&paramFour=value four'
+    )
 });

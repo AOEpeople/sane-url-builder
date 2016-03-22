@@ -57,6 +57,12 @@ module.exports = function(url) {
         if (queries.length < 1) return '';
 
         return queries.map(function(query, index) {
+            if (typeof query === 'object') {
+                query = Object.keys(query).map(function(propertyName) {
+                    var val = query[propertyName];
+                    return '&' + propertyName + '=' + val;
+                }).join('');
+            }
             if (index === 0) {
                 if (query.substr(0, 1) === '&') query = '?' + query.substr(1);
                 if (query.substr(0, 1) !== '?') query = '?' + query;
@@ -71,7 +77,7 @@ module.exports = function(url) {
     function fragment(fragments) {
         if (fragments.length < 1) return '';
         return fragments.map(function(fragment, index) {
-            if (index === 0 && fragment.substr(0, 1) !== '#') fragment = '#' + fragment
+            if (index === 0 && fragment.substr(0, 1) !== '#') fragment = '#' + fragment;
             return fragment;
         }).join('');
     }
