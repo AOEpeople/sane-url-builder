@@ -32,7 +32,7 @@ baseUrl += 'param=value';
 * all methods mentioned above are chainable
 * all methods mentioned above can take Boolean `false` to clear the corresponding value
 * clear everything with `clear()` (also chainable)
-* get the current url with `value()`
+* get the current url urlencoded with `value()`
 * clone the current object with `clone()`
 
 ## solution
@@ -80,8 +80,8 @@ sub.clear().value();
 
 `query()` is also happy to take an object
 ```javascript
-sub.query({'paramName': 'paramValue', 'anotherParam': 'anotherValue'}).value();
-// yields: ?paramName=paramValue&anotherParam=anotherValue
+sub.query({'paramName': 'param value', 'anotherParam': 'another value'}).value();
+// yields: ?paramName=param%20value&anotherParam=another%20value
 ```
 
 ## methods
