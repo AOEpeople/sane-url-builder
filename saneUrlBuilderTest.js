@@ -27,7 +27,7 @@ test('alias methods are working', function(t) {
     var sub = new SaneUrlBuilder();
 
     t.equal(sub.protocol('http').hash('#somehash').value(),
-        'http://#somehash'
+        encodeURI('http://#somehash')
     );
 });
 
@@ -39,18 +39,18 @@ test('provides useful url', function(t) {
     sub = new SaneUrlBuilder();
     t.equal(sub.scheme('http').user('john').pass('doe').host('my-host.host').port('2000')
                .path('this/is/some/path').query('?somequery=value').fragment('#somehash').value(),
-            'http://john:doe@my-host.host:2000/this/is/some/path?somequery=value#somehash'
+            encodeURI('http://john:doe@my-host.host:2000/this/is/some/path?somequery=value#somehash')
     );
 
     sub = new SaneUrlBuilder();
     t.equal(sub.scheme('http').host('my-host.host').port('2000')
             .path('this/is/some/path').query('?somequery=value').fragment('#somehash').value(),
-        'http://my-host.host:2000/this/is/some/path?somequery=value#somehash'
+        encodeURI('http://my-host.host:2000/this/is/some/path?somequery=value#somehash')
     );
 
     sub = new SaneUrlBuilder();
     t.equal(sub.scheme('http').host('my-host.host').path('this/is/some/path').fragment('#somehash').value(),
-        'http://my-host.host/this/is/some/path#somehash'
+        encodeURI('http://my-host.host/this/is/some/path#somehash')
     );
 });
 
@@ -60,7 +60,7 @@ test('path clearing and adding works', function(t) {
     var sub = new SaneUrlBuilder();
 
     t.equal(sub.path('this/is/some/path').path(false).path('/another/path').path('and/something/more').value(),
-        '/another/path/and/something/more'
+        encodeURI('/another/path/and/something/more')
     );
 });
 
@@ -70,7 +70,7 @@ test('fragment clearing and adding works', function(t) {
     var sub = new SaneUrlBuilder();
 
     t.equal(sub.fragment('#somehash').fragment(false).fragment('#anotherhash').fragment('-more-stuff').value(),
-        '#anotherhash-more-stuff'
+        encodeURI('#anotherhash-more-stuff')
     );
 });
 
@@ -79,8 +79,8 @@ test('query clearing and adding works', function(t) {
 
     var sub = new SaneUrlBuilder();
 
-    t.equal(sub.query({'some': 'query'}).query(false).query('&some=other&query=yes').query('?more=true').value(),
-        '?some=other&query=yes&more=true'
+    t.equal(sub.query({'some': 'query'}).query(false).query('&some=other value&query=yes').query('?more=true').value(),
+        encodeURI('?some=other value&query=yes&more=true')
     );
 });
 
@@ -98,7 +98,7 @@ test('clears values', function(t) {
     t.equal(sub.port('123').port(false).value(), EMPTY_STRING);
     t.equal(sub.path('/some/path').path(false).value(), EMPTY_STRING);
     t.equal(sub.fragment('#someFragment').fragment(false).value(), EMPTY_STRING);
-    t.equal(sub.query('?someQuery').query(false).value(), EMPTY_STRING);
+    t.equal(sub.query('?someQuery=some value').query(false).value(), EMPTY_STRING);
 });
 
 test('clears everything', function(t) {
@@ -120,8 +120,8 @@ test('clones url', function(t) {
     sub.scheme('http').host('host-one').port(5000).path('some-path');
     sub2 = sub.clone().scheme('ftp').port(6000);
 
-    t.equal(sub.value(), 'http://host-one:5000/some-path', 'first should be unchanged');
-    t.equal(sub2.value(), 'ftp://host-one:6000/some-path', 'second should be changed');
+    t.equal(sub.value(), encodeURI('http://host-one:5000/some-path'), 'first should be unchanged');
+    t.equal(sub2.value(), encodeURI('ftp://host-one:6000/some-path'), 'second should be changed');
 });
 
 test('query can take an object', function(t) {
@@ -130,7 +130,7 @@ test('query can take an object', function(t) {
     var sub = new SaneUrlBuilder();
 
     t.equal(sub.query({'paramOne': 'value one', 'paramTwo': 'value two', 'paramThree': 'value three'}).value(),
-        '?paramOne=value one&paramTwo=value two&paramThree=value three'
+        encodeURI('?paramOne=value one&paramTwo=value two&paramThree=value three')
     )
 });
 
@@ -140,6 +140,6 @@ test('mixed string and object query calls work', function(t) {
     var sub = new SaneUrlBuilder();
 
     t.equal(sub.query({'paramOne': 'value one', 'paramTwo': 'value two', 'paramThree': 'value three'}).query('paramFour=value four').value(),
-        '?paramOne=value one&paramTwo=value two&paramThree=value three&paramFour=value four'
+        encodeURI('?paramOne=value one&paramTwo=value two&paramThree=value three&paramFour=value four')
     )
 });
