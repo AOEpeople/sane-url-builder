@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/AOEpeople/sane-url-builder.svg?branch=master)](https://travis-ci.org/AOEpeople/sane-url-builder)
 # sane-url-builder
 
 When concatenating urls in javascript always starts pretty easy but ends up looking similar to this
