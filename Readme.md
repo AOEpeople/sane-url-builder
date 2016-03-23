@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/AOEpeople/sane-url-builder.svg?branch=master)](https://travis-ci.org/AOEpeople/sane-url-builder)
+[![Dependency Status](https://www.versioneye.com/user/projects/56f2657e35630e003e0a8018/badge.svg?style=flat)](https://www.versioneye.com/user/projects/56f2657e35630e003e0a8018)
 # sane-url-builder
 
 When concatenating urls in javascript always starts pretty easy but ends up looking similar to this
