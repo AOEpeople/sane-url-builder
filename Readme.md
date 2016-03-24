@@ -28,7 +28,7 @@ baseUrl += 'param=value';
 
 ## Tl;dr
 * clean interface to concatenate url parts (with error correction)
-* set parts of url with `scheme()`, `user()`, `pass()`, `host()`(), `port()`, `path()`, `query()`, `fragment()` methods (url consists of [scheme]`://`[user]`:`[pass]`@`[host]`:`[port]`/`[path]`?`[query]`#`[fragment])
+* set parts of url with `scheme()`, `user()`, `pass()`, `host()`, `port()`, `path()`, `query()`, `fragment()` methods (url consists of [scheme]`://`[user]`:`[pass]`@`[host]`:`[port]`/`[path]`?`[query]`#`[fragment])
 * calling the methods mentioned above more than once will override their values, except for `path`, `query` and `fragment` (they append)
 * all methods mentioned above are chainable
 * all methods mentioned above can take Boolean `false` to clear the corresponding value
