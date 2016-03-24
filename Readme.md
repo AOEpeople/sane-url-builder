@@ -81,7 +81,7 @@ sub.clear().value();
 
 `query()` is also happy to take an object
 ```javascript
-sub.query({'paramName': 'param value', 'anotherParam': 'another value'}).value();
+sub.query({'paramName': 'param value', 'anotherParam': 'another value'}).encodedValue();
 // yields: ?paramName=param%20value&anotherParam=another%20value
 ```
 
