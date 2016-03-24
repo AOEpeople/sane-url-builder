@@ -74,6 +74,10 @@ Sub.prototype.value = function() {
     return serializer(this.url);
 };
 
+Sub.prototype.encodedValue = function() {
+    return encodeURI(serializer(this.url));
+};
+
 Sub.prototype.clear = function() {
     this.url = {};
     return this;

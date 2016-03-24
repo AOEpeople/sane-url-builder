@@ -1,7 +1,7 @@
 module.exports = function(url) {
     if (typeof url !== 'object') url = {};
 
-    return encodeURI(Object.keys(url).map(function(propertyName) {
+    return Object.keys(url).map(function(propertyName) {
         var val = url[propertyName];
 
         switch(propertyName) {
@@ -15,7 +15,7 @@ module.exports = function(url) {
             case 'fragments' : return fragment(val);
             default          : throw new Error('No handler for propertyName: ' + propertyName);
         }
-    }).join(''));
+    }).join('');
 
     function scheme(scheme) {
         scheme = (scheme.indexOf(':') === -1) ? scheme + '://' : scheme.substr(0, scheme.indexOf(':')) + '://';
