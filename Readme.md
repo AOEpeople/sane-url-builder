@@ -23,7 +23,7 @@ sub.setQuery();
 
 `path()`, `setPath()`
 
-`query()`, `setQuery()`a
+`query()`, `setQuery()`
 
 `fragment()`, `setFragment`, `hash()`, `setHash()`
 
