@@ -10,6 +10,16 @@ sub.setHost();
 sub.setQuery();
 ```
 
+#### aliases
+`scheme()`, `setScheme`, `protocol()`, `setProtocol`
+`user()`, `setUser()`
+`pass()`, `setPass()` 
+`host()`, `setHost()`
+`port()`, `setPort()`
+`path()`, `setPath()`
+`query()`, `setQuery()`a
+`fragment()`, `setFragment`, `hash()`, `setHash()`
+
 ### read
 ```
 var sub = new SaneUrlBuilder;
@@ -37,6 +47,10 @@ var sub = new SaneUrlBuilder;
 sub.deleteProtocol();
 sub.deleteHost();
 sub.deleteQuery();
+
+// also supported
+sub.protocol(false);
+sub.setProtocol(false);
 ```
 
 
