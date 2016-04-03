@@ -43,7 +43,6 @@ var sub = new SaneUrlBuilder;
 // all chainable
 sub.addQueryParams({param: "value", param2: "value2"});
 sub.modifyQueryParams({param: "another value", param2: "antother value 2"});
-sub.deleteQueryParams({param, param2});
 ```
 
 ### delete
@@ -55,9 +54,8 @@ sub.deleteProtocol();
 sub.deleteHost();
 sub.deleteQuery();
 
-// also supported
-sub.protocol(false);
-sub.setProtocol(false);
+// partial deletes
+sub.deleteQueryParams({param, param2});
 ```
 
 
