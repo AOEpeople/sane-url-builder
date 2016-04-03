@@ -12,12 +12,19 @@ sub.setQuery();
 
 #### aliases
 `scheme()`, `setScheme`, `protocol()`, `setProtocol`
+
 `user()`, `setUser()`
+
 `pass()`, `setPass()` 
+
 `host()`, `setHost()`
+
 `port()`, `setPort()`
+
 `path()`, `setPath()`
+
 `query()`, `setQuery()`a
+
 `fragment()`, `setFragment`, `hash()`, `setHash()`
 
 ### read
