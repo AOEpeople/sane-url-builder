@@ -1,3 +1,45 @@
+## New CRUD API draft
+
+### create
+```
+var sub = new SaneUrlBuilder;
+
+// all chainable
+sub.setProtocol();
+sub.setHost();
+sub.setQuery();
+```
+
+### read
+```
+var sub = new SaneUrlBuilder;
+
+sub.getProtocol();
+sub.getHost();
+sub.getQuery();
+```
+
+### update
+```
+var sub = new SaneUrlBuilder;
+
+// all chainable
+sub.addQueryParams({param: "value", param2: "value2"});
+sub.modifyQueryParams({param: "another value", param2: "antother value 2"});
+sub.deleteQueryParams({param, param2});
+```
+
+### delete
+```
+var sub = new SaneUrlBuilder;
+
+// all chainable
+sub.deleteProtocol();
+sub.deleteHost();
+sub.deleteQuery();
+```
+
+
 [![Build Status](https://travis-ci.org/AOEpeople/sane-url-builder.svg?branch=master)](https://travis-ci.org/AOEpeople/sane-url-builder)
 [![Dependency Status](https://www.versioneye.com/user/projects/56f2657e35630e003e0a8018/badge.svg?style=flat)](https://www.versioneye.com/user/projects/56f2657e35630e003e0a8018)
 # sane-url-builder
