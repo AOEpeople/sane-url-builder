@@ -11,21 +11,21 @@ sub.setQuery();
 ```
 
 #### aliases
-`scheme()`, `setScheme`, `protocol()`, `setProtocol`
+ `setScheme`, `setProtocol`
 
-`user()`, `setUser()`
+`setUser()`
 
-`pass()`, `setPass()` 
+`setPass()` 
 
-`host()`, `setHost()`
+`setHost()`
 
-`port()`, `setPort()`
+`setPort()`
 
-`path()`, `setPath()`
+`setPath()`
 
-`query()`, `setQuery()`
+`setQuery()`
 
-`fragment()`, `setFragment`, `hash()`, `setHash()`
+`setFragment()`, `setHash()`
 
 ### read
 ```
