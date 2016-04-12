@@ -69,16 +69,6 @@ Set.prototype.setQuery = function(query, isEncoded) {
     // values can be encoded or not, specify via param and we encode
     if (typeof query === 'object') {
         loop(query, function(valueOrValues, key) {
-            /*
-            // use this for update
-            if (isArray(this._sanitizedUrlParts.query[key])) {
-                if (isArray(valueOrValues)) {
-                    this._sanitizedUrlParts.query[key] = concat(this._sanitizedUrlParts.query[key], valueOrValues);
-                } else {
-                    this._sanitizedUrlParts.query[key].push(valueOrValues);
-                }
-            } else {
-            */
             if (isArray(valueOrValues)) {
                 this._sanitizedUrlParts.query[key] = isEncoded ? valueOrValues : encodeArrayValues(valueOrValues);
             } else {
