@@ -5,7 +5,7 @@
   "main": "saneUrlBuilder.js",
   "scripts": {
     "clean": "rm -rf build",
-    "test": "./node_modules/.bin/tape *Test.js | ./node_modules/.bin/faucet",
+    "test": "./node_modules/.bin/tape *Spec.js | ./node_modules/.bin/faucet",
     "build": "npm run clean && mkdir build && ./node_modules/.bin/browserify saneUrlBuilder.js --o build/saneUrlBuilder.js",
     "publish": "git push && git push --tags && npm publish"
   },
@@ -30,6 +30,9 @@
     "tape": "4.5.1"
   },
   "dependencies": {
-    "copy-object": "1.0.0"
+    "array-concat": "0.1.1",
+    "copy-object": "1.0.0",
+    "isarray": "1.0.0",
+    "simple-loop": "0.0.4"
   }
 }
